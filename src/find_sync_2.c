@@ -87,9 +87,14 @@ int main(int argc, char **argv)
 	double x=0;
 	double p=0;
 	field_p=0;
+	double sum=0;
 	while (scanf("%lf %lf %lf", &t, &x, &p)==3) {
+		if (isnan(x)) x=0;
 		field[field_p]=x;
 		field_p=(field_p)%BUFFERLEN;
+		sum=sum+diff_field_sync(1,0);
+		if (isnan(sum)) sum=0;
+		printf("%lf %lf\n", t, sum/1000000);
 	}
 	return 0;	
 }
